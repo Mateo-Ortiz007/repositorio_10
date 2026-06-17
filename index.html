@@ -85,25 +85,135 @@
         .forgot-password:hover {
             text-decoration: underline;
         }
+
+        /* Estilos para la pantalla de bienvenida */
+        .welcome-container {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            padding: 40px 30px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: slideIn 0.5s ease;
+        }
+
+        .welcome-container.show {
+            display: block;
+        }
+
+        .welcome-container h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2.5rem;
+        }
+
+        .welcome-container p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 18px;
+        }
+
+        .welcome-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .logout-btn {
+            background: #ff6b6b;
+            padding: 12px 30px;
+            margin-top: 20px;
+        }
+
+        .logout-btn:hover {
+            background: #ff5252;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-container.hide {
+            display: none;
+        }
     </style>
 </head>
 <body>
 
-    <div class="login-container">
+    <!-- Pantalla de Login -->
+    <div class="login-container" id="loginContainer">
         <h1>Login</h1>
 
         <div class="input-group">
-            <input type="text" name="username" placeholder="Username">
+            <input type="text" id="username" name="username" placeholder="Username">
         </div>
 
         <div class="input-group">
-            <input type="password" name="password" placeholder="Password">
+            <input type="password" id="password" name="password" placeholder="Password">
         </div>
 
-        <button type="submit">Login</button>
+        <button type="button" onclick="handleLogin()">Login</button>
 
         <a href="#" class="forgot-password">Forgot your password?</a>
     </div>
+
+    <!-- Pantalla de Bienvenida -->
+    <div class="welcome-container" id="welcomeContainer">
+        <h1>¡Bienvenido!</h1>
+        
+        <p id="welcomeMessage">Welcome to our application!</p>
+        
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=400&fit=crop" alt="Welcome" class="welcome-image">
+        
+        <p style="color: #888; font-size: 14px; margin-top: 15px;">Acceso exitoso a tu cuenta</p>
+        
+        <button type="button" class="logout-btn" onclick="handleLogout()">Logout</button>
+    </div>
+
+    <script>
+        function handleLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Validar que los campos no estén vacíos
+            if (username.trim() === '' || password.trim() === '') {
+                alert('Por favor, completa todos los campos');
+                return;
+            }
+
+            // Cambiar a la pantalla de bienvenida
+            document.getElementById('loginContainer').classList.add('hide');
+            document.getElementById('welcomeContainer').classList.add('show');
+            document.getElementById('welcomeMessage').textContent = `¡Bienvenido, ${username}!`;
+        }
+
+        function handleLogout() {
+            // Volver a la pantalla de login
+            document.getElementById('loginContainer').classList.remove('hide');
+            document.getElementById('welcomeContainer').classList.remove('show');
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        // Permitir login al presionar Enter
+        document.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                handleLogin();
+            }
+        });
+    </script>
 
 </body>
 </html>
