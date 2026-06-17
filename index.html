@@ -4,12 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #62ace0, #44dce2);
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 350px;
+            padding: 40px 30px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .login-container h1 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #1c96ab;
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            background: #1ed1c8;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1cb3ca;
+            transform: translateY(-2px);
+        }
+
+        .forgot-password {
+            display: block;
+            margin-top: 18px;
+            color: #1b9cbc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
-    <input type="text" name="username" placeholder="Username">
-    <input type="password" name="password" placeholder="Password">
-    <button type="submit">Login</button>
+    <div class="login-container">
+        <h1>Login</h1>
+
+        <div class="input-group">
+            <input type="text" name="username" placeholder="Username">
+        </div>
+
+        <div class="input-group">
+            <input type="password" name="password" placeholder="Password">
+        </div>
+
+        <button type="submit">Login</button>
+
+        <a href="#" class="forgot-password">Forgot your password?</a>
+    </div>
 
 </body>
 </html>
